@@ -1,4 +1,3 @@
-import 'package:app_chat/models/contact.dart';
 import 'package:app_chat/screens/chat_page.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +9,7 @@ class ContactsPage extends StatefulWidget {
 }
 
 class _ContactsPageState extends State<ContactsPage> {
-  List<Contact> contacts = [];
+  List<String> contacts = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,14 +21,14 @@ class _ContactsPageState extends State<ContactsPage> {
         itemBuilder: (context, index) {
           return ListTile(
             leading: CircleAvatar(
-              child: Text(contacts[index].displayName[0]),
+              child: Text(contacts[index][0]),
             ),
-            title: Text(contacts[index].displayName),
-            subtitle: Text('"${contacts[index].id}"'),
+            title: Text(contacts[index]),
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (_) {
                 return ChatPage(
-                    id: contacts[index].id, name: contacts[index].displayName);
+                  name: contacts[index],
+                );
               }));
             },
           );
@@ -68,9 +67,7 @@ class _ContactsPageState extends State<ContactsPage> {
                             return;
                           }
                           setState(() {
-                            contacts.add(Contact(
-                                displayName: nameController.text,
-                                id: nameController.text));
+                            contacts.add(nameController.text);
                           });
                           Navigator.pop(context);
                         },

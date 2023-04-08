@@ -7,9 +7,8 @@ import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:web_socket_client/web_socket_client.dart';
 
 class ChatPage extends StatefulWidget {
-  const ChatPage({super.key, required this.id, required this.name});
+  const ChatPage({super.key, required this.name});
 
-  final String id;
   final String name;
 
   @override
@@ -25,7 +24,7 @@ class _ChatPageState extends State<ChatPage> {
   @override
   void initState() {
     super.initState();
-    otherUser = types.User(id: widget.id, firstName: widget.name);
+    otherUser = types.User(id: widget.name, firstName: widget.name);
     me = const types.User(id: 'Fareez', firstName: 'Fareez');
     // Listen to messages from the server.
     socket.messages.listen((incomingMessage) {
