@@ -1,4 +1,5 @@
 import 'package:app_chat/models/contact.dart';
+import 'package:app_chat/screens/chat_page.dart';
 import 'package:flutter/material.dart';
 
 class ContactsPage extends StatefulWidget {
@@ -22,14 +23,14 @@ class _ContactsPageState extends State<ContactsPage> {
           return ListTile(
             leading: CircleAvatar(
               child: Text(contacts[index].displayName[0]),
-              // backgroundColor: Colors.blue.shade100,
             ),
             title: Text(contacts[index].displayName),
             subtitle: Text('"${contacts[index].id}"'),
             onTap: () {
-              // TODO: Navigate to chat page
-              var chatId = contacts[index].id;
-              print(chatId);
+              Navigator.push(context, MaterialPageRoute(builder: (_) {
+                return ChatPage(
+                    id: contacts[index].id, name: contacts[index].displayName);
+              }));
             },
           );
         },
@@ -42,7 +43,6 @@ class _ContactsPageState extends State<ContactsPage> {
             context: context,
             builder: (_) {
               final nameController = TextEditingController();
-              final idController = TextEditingController();
               return Padding(
                 padding: EdgeInsets.fromLTRB(
                     8, 8, 8, MediaQuery.of(context).viewInsets.bottom),
@@ -56,7 +56,7 @@ class _ContactsPageState extends State<ContactsPage> {
                       ),
                     ),
                     TextField(
-                      controller: idController,
+                      controller: nameController,
                       decoration: const InputDecoration(
                           labelText: 'ID', hintText: 'ID must be unique'),
                     ),
@@ -64,14 +64,13 @@ class _ContactsPageState extends State<ContactsPage> {
                     ElevatedButton.icon(
                         onPressed: () {
                           // ignore empty fields
-                          if (nameController.text.isEmpty ||
-                              idController.text.isEmpty) {
+                          if (nameController.text.isEmpty) {
                             return;
                           }
                           setState(() {
                             contacts.add(Contact(
                                 displayName: nameController.text,
-                                id: idController.text));
+                                id: nameController.text));
                           });
                           Navigator.pop(context);
                         },
