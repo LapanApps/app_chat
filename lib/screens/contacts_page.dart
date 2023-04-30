@@ -80,7 +80,7 @@ class _ContactsPageState extends State<ContactsPage> {
           );
         },
         label: const Text('Send a message'),
-        icon: Icon(Icons.message_outlined),
+        icon: const Icon(Icons.message_outlined),
       ),
     );
   }

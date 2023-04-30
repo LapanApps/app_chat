@@ -1,6 +1,8 @@
 # app_chat
 
-A new Flutter project.
+Chat App with WebSocket Backend
+
+![Flutter Chat App UI and websocket](https://imgur.com/TVqui84.png)
 
 ## Getting Started
 

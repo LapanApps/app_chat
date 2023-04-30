@@ -43,9 +43,9 @@ class _ChatPageState extends State<ChatPage> {
       String msg = data['msg'];
       String timestamp = data['timestamp'];
 
-      if (id == otherUser.id) {
-        onMessageReceived(msg);
-      }
+      // if (id == otherUser.id) {
+      onMessageReceived(msg);
+      // }
     });
   }
 
